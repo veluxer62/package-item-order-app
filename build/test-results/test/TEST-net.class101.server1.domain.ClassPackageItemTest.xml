@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="net.class101.server1.domain.ClassPackageItemTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2020-04-23T12:54:34" hostname="DESKTOP-QELV3CT" time="0.068">
+  <properties/>
+  <testcase name="getNumber_will_return_number_correctly()" classname="net.class101.server1.domain.ClassPackageItemTest" time="0.053"/>
+  <testcase name="getPrice_will_return_price_correctly()" classname="net.class101.server1.domain.ClassPackageItemTest" time="0.002"/>
+  <testcase name="getTitle_will_return_title_correctly()" classname="net.class101.server1.domain.ClassPackageItemTest" time="0.004"/>
+  <testcase name="sut_is_implemented_PackageItem()" classname="net.class101.server1.domain.ClassPackageItemTest" time="0.004"/>
+  <testcase name="stockAvailable_will_return_true_always()" classname="net.class101.server1.domain.ClassPackageItemTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
