@@ -1,13 +1,13 @@
 package net.class101.server1.controller;
 
-import net.class101.server1.Order;
+import net.class101.server1.dto.OrderDto;
 import net.class101.server1.dto.PackageItemsDto;
 import net.class101.server1.dto.Response;
 import net.class101.server1.service.PackageItemProvider;
 
 import java.util.List;
 
-public class SimplePackageItemController implements PackageItemController {
+public class SimplePackageItemController implements PackageItemController<OrderDto> {
     private final PackageItemProvider provider;
 
     public SimplePackageItemController(PackageItemProvider provider) {
@@ -20,7 +20,7 @@ public class SimplePackageItemController implements PackageItemController {
     }
 
     @Override
-    public Response order(List<Order> orders) {
+    public Response order(List<OrderDto> orders) {
         return null;
     }
 }
