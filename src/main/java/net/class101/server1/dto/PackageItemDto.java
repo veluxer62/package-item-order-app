@@ -6,14 +6,12 @@ import net.class101.server1.domain.PackageItem;
 
 public class PackageItemDto {
     private final long number;
-    private final String type;
     private final String title;
     private final int price;
     private final int stock;
 
-    private PackageItemDto(long number, String type, String title, int price, int stock) {
+    private PackageItemDto(long number, String title, int price, int stock) {
         this.number = number;
-        this.type = type;
         this.title = title;
         this.price = price;
         this.stock = stock;
@@ -26,7 +24,6 @@ public class PackageItemDto {
             KitPackageItem item = (KitPackageItem) packageItem;
             dto = new PackageItemDto(
                     item.getNumber(),
-                    "키트",
                     item.getTitle(),
                     item.getPrice(),
                     item.getStock()
@@ -35,7 +32,6 @@ public class PackageItemDto {
             ClassPackageItem item = (ClassPackageItem) packageItem;
             dto = new PackageItemDto(
                     item.getNumber(),
-                    "키트",
                     item.getTitle(),
                     item.getPrice(),
                     99999
@@ -47,10 +43,6 @@ public class PackageItemDto {
 
     public long getNumber() {
         return number;
-    }
-
-    public String getType() {
-        return type;
     }
 
     public String getTitle() {

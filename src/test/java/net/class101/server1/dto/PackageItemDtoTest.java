@@ -25,7 +25,6 @@ class PackageItemDtoTest {
 
         assertThat(actual).isNotNull();
         assertThat(actual.getNumber()).isEqualTo(number);
-        assertThat(actual.getType()).isEqualTo("키트");
         assertThat(actual.getTitle()).isEqualTo(title);
         assertThat(actual.getPrice()).isEqualTo(price);
         assertThat(actual.getStock()).isEqualTo(stock);
@@ -42,7 +41,6 @@ class PackageItemDtoTest {
 
         assertThat(actual).isNotNull();
         assertThat(actual.getNumber()).isEqualTo(number);
-        assertThat(actual.getType()).isEqualTo("키트");
         assertThat(actual.getTitle()).isEqualTo(title);
         assertThat(actual.getPrice()).isEqualTo(price);
         assertThat(actual.getStock()).isEqualTo(99999);
