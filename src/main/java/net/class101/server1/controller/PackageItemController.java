@@ -1,4 +1,7 @@
-package net.class101.server1;
+package net.class101.server1.controller;
+
+import net.class101.server1.Order;
+import net.class101.server1.Response;
 
 import java.util.List;
 
