@@ -4,7 +4,7 @@ public class KitPackageItem implements PackageItem {
     private final long number;
     private final String title;
     private final int price;
-    private final int stock;
+    private int stock;
 
     public KitPackageItem(long number, String title, int price, int stock) {
         this.number = number;
@@ -23,6 +23,10 @@ public class KitPackageItem implements PackageItem {
 
     public int getStock() {
         return stock;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
     }
 
     @Override
