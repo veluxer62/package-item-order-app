@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface PackageItemRepository {
     List<PackageItem> findAll();
-    void updateStock(PackageItem packageItem);
+    void updateStock(PackageItem packageItem) throws ClassNotFoundException;
 }
