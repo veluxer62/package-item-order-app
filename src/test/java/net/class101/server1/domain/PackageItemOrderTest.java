@@ -1,12 +1,9 @@
 package net.class101.server1.domain;
 
 import net.class101.server1.IllegalOrderCountException;
-import net.class101.server1.RandomParameterResolver;
-import net.class101.server1.RandomParameterResolver.Random;
 import net.class101.server1.SoldOutException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -28,12 +25,14 @@ class PackageItemOrderTest {
     }
 
     @Test
-    @ExtendWith(RandomParameterResolver.class)
-    public void getItemTitle_will_return_title_correctly_if_given_PackageItem(@Random String title) {
-        PackageItem packageItem = new KitPackageItem(91008, title, 28000, 10);
+    public void getPackageItem_will_return_PackageItem_correctly() {
+        PackageItem packageItem = new KitPackageItem(91008, "작고 쉽게 그려요 - 부담없이 시작하는 수채화 미니 키트", 28000, 10);
         PackageItemOrder sut = new PackageItemOrder(packageItem, 2);
-        String actual = sut.getItemTitle();
-        assertThat(actual).isEqualTo(title);
+        PackageItem actual = sut.getPackageItem();
+        assertThat(actual.getNumber()).isEqualTo(91008);
+        assertThat(actual.getTitle()).isEqualTo("작고 쉽게 그려요 - 부담없이 시작하는 수채화 미니 키트");
+        assertThat(actual.getPrice()).isEqualTo(28000);
+        assertThat(actual.getStock()).isEqualTo(10);
     }
 
     @Test

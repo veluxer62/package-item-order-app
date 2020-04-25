@@ -26,7 +26,7 @@ public class PackageItemOrder implements Order {
     }
 
     @Override
-    public String getItemTitle() {
-        return packageItem.getTitle();
+    public PackageItem getPackageItem() {
+        return packageItem;
     }
 }
