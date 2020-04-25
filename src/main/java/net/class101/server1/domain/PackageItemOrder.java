@@ -1,5 +1,6 @@
 package net.class101.server1.domain;
 
+import net.class101.server1.IllegalOrderCountException;
 import net.class101.server1.SoldOutException;
 
 public class PackageItemOrder implements Order {
@@ -9,6 +10,10 @@ public class PackageItemOrder implements Order {
     public PackageItemOrder(PackageItem packageItem, int orderCount) {
         if (packageItem.getStock() < orderCount) {
             throw new SoldOutException();
+        }
+
+        if (orderCount <= 0) {
+            throw new IllegalOrderCountException();
         }
 
         this.packageItem = packageItem;
