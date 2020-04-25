@@ -6,6 +6,7 @@ import net.class101.server1.domain.KitPackageItem;
 import net.class101.server1.domain.PackageItem;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -61,16 +62,9 @@ class InMemoryPackageItemRepositoryTest {
     }
 
     @Test
-    public void findById_will_return_PackageItem_if_given_id() {
-        Optional<PackageItem> actual = sut.findById(16374);
-        assertThat(actual).isNotEmpty();
-        assertThat(actual.get().getNumber()).isEqualTo(16374);
-    }
-
-    @Test
-    public void findById_will_return_empty_if_given_id_is_not_exist() {
-        Optional<PackageItem> actual = sut.findById(-1);
-        assertThat(actual).isEmpty();
+    public void findByIdIn_will_return_PackageItems_correctly() {
+        List<PackageItem> actual = sut.findByIdIn(Arrays.asList(91008L, 16374L));
+        assertThat(actual.size()).isEqualTo(2);
     }
 
 }
