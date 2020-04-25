@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface PackageItemRepository {
     List<PackageItem> findAll();
-    void updateStock(PackageItem packageItem) throws ClassNotFoundException;
+    void updateAll(List<PackageItem> packageItems);
     List<PackageItem> findByIdIn(List<Long> ids);
 }

@@ -30,41 +30,28 @@ class InMemoryPackageItemRepositoryTest {
     }
 
     @Test
-    public void update_will_change_PackageItem_correctly() throws ClassNotFoundException {
-        KitPackageItem given = new KitPackageItem(91008, "작고 쉽게 그려요 - 부담없이 시작하는 수채화 미니 키트", 28000, 3);
-        sut.updateStock(given);
-
-        PackageItem packageItem = Storage.packageItems
-                .stream()
-                .filter(it -> it.getNumber() == 91008)
-                .collect(Collectors.toList())
-                .get(0);
-
-        assertThat(packageItem.getStock()).isEqualTo(3);
-    }
-
-    @Test
-    public void update_will_throw_exception_if_given_PackageItem_is_not_exist() {
-        KitPackageItem given = new KitPackageItem(-1, "작고 쉽게 그려요 - 부담없이 시작하는 수채화 미니 키트", 28000, 3);
-        assertThrows(ClassNotFoundException.class, () -> sut.updateStock(given));
-    }
-
-    @Test
-    public void update_will_throw_exception_if_given_PackageItem_is_ClassPacakgeItem() {
-        ClassPackageItem given = new ClassPackageItem(16374, "스마트스토어로 월 100만원 만들기, 평범한 사람이 돈을 만드 는 비법", 151950);
-        assertThrows(IllegalArgumentException.class, () -> sut.updateStock(given));
-    }
-
-    @Test
-    public void update_will_throw_exception_if_found_PackageItem_is_ClassPacakgeItem() {
-        KitPackageItem given = new KitPackageItem(16374, "작고 쉽게 그려요 - 부담없이 시작하는 수채화 미니 키트", 28000, 3);
-        assertThrows(ClassCastException.class, () -> sut.updateStock(given));
-    }
-
-    @Test
     public void findByIdIn_will_return_PackageItems_correctly() {
         List<PackageItem> actual = sut.findByIdIn(Arrays.asList(91008L, 16374L));
         assertThat(actual.size()).isEqualTo(2);
+    }
+
+    @Test
+    public void updateStockAll_will_update_stock_of_PackageItems() {
+        PackageItem packageItem = new KitPackageItem(91008, "작고 쉽게 그려요 - 부담없이 시작하는 수채화 미니 키트", 28000, 10);
+        PackageItem packageItem1 = new KitPackageItem(9235, "하루의 시작과 끝, 욕실의 포근함을 선사하는 천연 비누", 9900, 22);
+
+        packageItem.setStock(8);
+        packageItem1.setStock(10);
+
+        List<PackageItem> packageItems = Arrays.asList(packageItem, packageItem1);
+
+        sut.updateAll(packageItems);
+
+        List<PackageItem> expected = Storage.packageItems.stream()
+                .filter(it -> it.getNumber() == 91008 || it.getNumber() == 9235)
+                .collect(Collectors.toList());
+        assertThat(expected.get(0).getStock()).isEqualTo(8);
+        assertThat(expected.get(1).getStock()).isEqualTo(10);
     }
 
 }
