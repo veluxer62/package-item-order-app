@@ -61,4 +61,12 @@ class PackageItemOrderTest {
         assertThat(actual).isNotNull();
     }
 
+    @Test
+    public void getOrderCount_will_return_orderCount_correctly() {
+        PackageItem packageItem = new KitPackageItem(91008, "작고 쉽게 그려요 - 부담없이 시작하는 수채화 미니 키트", 28000, 10);
+        PackageItemOrder sut = new PackageItemOrder(packageItem, 2);
+        int actual = sut.getOrderCount();
+        assertThat(actual).isEqualTo(2);
+    }
+
 }

@@ -6,4 +6,5 @@ public interface Order {
     UUID getId();
     int getPrice();
     PackageItem getPackageItem();
+    int getOrderCount();
 }

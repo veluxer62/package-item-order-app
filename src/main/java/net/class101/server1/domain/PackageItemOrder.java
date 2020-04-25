@@ -38,4 +38,9 @@ public class PackageItemOrder implements Order {
     public PackageItem getPackageItem() {
         return packageItem;
     }
+
+    @Override
+    public int getOrderCount() {
+        return orderCount;
+    }
 }
