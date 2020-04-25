@@ -11,7 +11,7 @@ import java.util.stream.Stream;
 
 public class OrdersAndPaymentPriceArguments implements ArgumentsProvider {
     @Override
-    public Stream<? extends Arguments> provideArguments(ExtensionContext context) throws Exception {
+    public Stream<? extends Arguments> provideArguments(ExtensionContext context) {
         return Stream.of(
                 () -> {
                     List<Order> orders = Arrays.asList(

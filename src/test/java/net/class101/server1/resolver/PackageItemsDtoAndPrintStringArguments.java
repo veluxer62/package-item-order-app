@@ -14,7 +14,7 @@ import java.util.stream.Stream;
 
 public class PackageItemsDtoAndPrintStringArguments implements ArgumentsProvider {
     @Override
-    public Stream<? extends Arguments> provideArguments(ExtensionContext context) throws Exception {
+    public Stream<? extends Arguments> provideArguments(ExtensionContext context) {
         return Stream.of(
                 () -> {
                     PackageItem packageItem = new ClassPackageItem(16374, "스마트스토어로 월 100만원 만들기, 평범한 사람이 돈을 만드 는 비법", 151950);

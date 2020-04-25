@@ -40,17 +40,13 @@ class PackageItemOrderTest {
     @Test
     public void sut_will_throw_SoldOutException_if_given_orderCount_is_less_then_stock_of_KitPackageItem() {
         PackageItem packageItem = new KitPackageItem(91008, "작고 쉽게 그려요 - 부담없이 시작하는 수채화 미니 키트", 28000, 10);
-        Assertions.assertThrows(SoldOutException.class, () -> {
-            new PackageItemOrder(packageItem, 11);
-        });
+        Assertions.assertThrows(SoldOutException.class, () -> new PackageItemOrder(packageItem, 11));
     }
 
     @Test
     public void sut_will_throw_IllegalOrderCountException_if_given_orderCount_is_zero() {
         PackageItem packageItem = new KitPackageItem(91008, "작고 쉽게 그려요 - 부담없이 시작하는 수채화 미니 키트", 28000, 10);
-        Assertions.assertThrows(IllegalOrderCountException.class, () -> {
-            new PackageItemOrder(packageItem, 0);
-        });
+        Assertions.assertThrows(IllegalOrderCountException.class, () -> new PackageItemOrder(packageItem, 0));
     }
 
     @Test
