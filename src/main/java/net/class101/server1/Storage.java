@@ -2,9 +2,12 @@ package net.class101.server1;
 
 import net.class101.server1.domain.ClassPackageItem;
 import net.class101.server1.domain.KitPackageItem;
+import net.class101.server1.domain.Order;
 import net.class101.server1.domain.PackageItem;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class Storage {
@@ -30,4 +33,6 @@ public class Storage {
             new ClassPackageItem(74218, "나만의 문방구를 차려요! 그리지영의 타블렛으로 굿즈 만들기", 191600),
             new ClassPackageItem(28448, "당신도 할 수 있다! 베테랑 실무자가 알려주는 모션그래픽의 모든 것", 152200)
     );
+
+    public static List<Order> orders = new ArrayList<>();
 }
