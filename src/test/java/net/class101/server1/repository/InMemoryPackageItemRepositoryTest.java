@@ -4,10 +4,10 @@ import net.class101.server1.Storage;
 import net.class101.server1.domain.ClassPackageItem;
 import net.class101.server1.domain.KitPackageItem;
 import net.class101.server1.domain.PackageItem;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -58,6 +58,19 @@ class InMemoryPackageItemRepositoryTest {
     public void update_will_throw_exception_if_found_PackageItem_is_ClassPacakgeItem() {
         KitPackageItem given = new KitPackageItem(16374, "작고 쉽게 그려요 - 부담없이 시작하는 수채화 미니 키트", 28000, 3);
         assertThrows(ClassCastException.class, () -> sut.updateStock(given));
+    }
+
+    @Test
+    public void findById_will_return_PackageItem_if_given_id() {
+        Optional<PackageItem> actual = sut.findById(16374);
+        assertThat(actual).isNotEmpty();
+        assertThat(actual.get().getNumber()).isEqualTo(16374);
+    }
+
+    @Test
+    public void findById_will_return_empty_if_given_id_is_not_exist() {
+        Optional<PackageItem> actual = sut.findById(-1);
+        assertThat(actual).isEmpty();
     }
 
 }

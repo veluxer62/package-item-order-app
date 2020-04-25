@@ -5,6 +5,7 @@ import net.class101.server1.domain.KitPackageItem;
 import net.class101.server1.domain.PackageItem;
 
 import java.util.List;
+import java.util.Optional;
 
 public class InMemoryPackageItemRepository implements PackageItemRepository {
     @Override
@@ -24,5 +25,12 @@ public class InMemoryPackageItemRepository implements PackageItemRepository {
                 .orElseThrow(ClassNotFoundException::new);
 
         ((KitPackageItem) foundItem).setStock(packageItem.getStock());
+    }
+
+    @Override
+    public Optional<PackageItem> findById(long id) {
+        return Storage.packageItems.stream()
+                .filter(it -> it.getNumber() == id)
+                .findFirst();
     }
 }
