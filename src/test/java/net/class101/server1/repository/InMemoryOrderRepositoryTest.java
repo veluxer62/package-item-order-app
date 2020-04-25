@@ -48,9 +48,12 @@ class InMemoryOrderRepositoryTest {
     @Test
     public void save_will_insert_order_correctly() {
         Storage.orders.clear();
-        PackageItemOrder order = new PackageItemOrder(Storage.packageItems.get(0), 1);
+        List<Order> orders = Arrays.asList(
+                new PackageItemOrder(Storage.packageItems.get(0), 1),
+                new PackageItemOrder(Storage.packageItems.get(1), 1)
+        );
 
-        sut.save(order);
+        sut.saveAll(orders);
 
         assertThat(Storage.orders).isNotEmpty();
     }

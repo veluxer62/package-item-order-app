@@ -16,7 +16,7 @@ public class InMemoryOrderRepository implements OrderRepository {
     }
 
     @Override
-    public void save(Order order) {
-        Storage.orders.add(order);
+    public void saveAll(List<Order> orders) {
+        Storage.orders.addAll(orders);
     }
 }

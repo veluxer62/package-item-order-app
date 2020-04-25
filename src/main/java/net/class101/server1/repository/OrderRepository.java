@@ -7,5 +7,5 @@ import java.util.UUID;
 
 public interface OrderRepository {
     List<Order> findByIdIn(List<UUID> orderIds);
-    void save(Order order);
+    void saveAll(List<Order> orders);
 }
