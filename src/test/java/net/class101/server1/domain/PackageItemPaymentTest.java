@@ -1,5 +1,7 @@
 package net.class101.server1.domain;
 
+import net.class101.server1.IllegalPaymentException;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ArgumentsSource;
@@ -9,6 +11,7 @@ import java.util.Collections;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class PackageItemPaymentTest {
 
@@ -79,6 +82,18 @@ class PackageItemPaymentTest {
         int actual = sut.getPaymentPrice();
 
         assertThat(actual).isEqualTo(expected);
+    }
+
+    @Test
+    public void sut_will_throw_IllegalPaymentException_if_given_duplicated_ClassPackageItem_order() {
+        List<Order> orders = Arrays.asList(
+                new PackageItemOrder(new ClassPackageItem(16374, "스마트스토어로 월 100만원 만들기, 평범한 사람이 돈을 만드 는 비법", 151950), 1),
+                new PackageItemOrder(new ClassPackageItem(16374, "스마트스토어로 월 100만원 만들기, 평범한 사람이 돈을 만드 는 비법", 151950), 1)
+        );
+
+        assertThrows(IllegalPaymentException.class, () -> {
+            new PackageItemPayment(orders);
+        });
     }
 
 }
