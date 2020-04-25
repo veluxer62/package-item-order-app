@@ -1,7 +1,5 @@
 package net.class101.server1.dto;
 
-import net.class101.server1.domain.ClassPackageItem;
-import net.class101.server1.domain.KitPackageItem;
 import net.class101.server1.domain.PackageItem;
 
 public class PackageItemDto {
@@ -18,27 +16,12 @@ public class PackageItemDto {
     }
 
     public static PackageItemDto of(PackageItem packageItem) {
-        PackageItemDto dto;
-
-        if (packageItem instanceof KitPackageItem) {
-            KitPackageItem item = (KitPackageItem) packageItem;
-            dto = new PackageItemDto(
-                    item.getNumber(),
-                    item.getTitle(),
-                    item.getPrice(),
-                    item.getStock()
-            );
-        } else {
-            ClassPackageItem item = (ClassPackageItem) packageItem;
-            dto = new PackageItemDto(
-                    item.getNumber(),
-                    item.getTitle(),
-                    item.getPrice(),
-                    99999
-            );
-        }
-
-        return dto;
+        return new PackageItemDto(
+                packageItem.getNumber(),
+                packageItem.getTitle(),
+                packageItem.getPrice(),
+                packageItem.getStock()
+        );
     }
 
     public long getNumber() {

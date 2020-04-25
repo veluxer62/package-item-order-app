@@ -12,21 +12,23 @@ public class ClassPackageItem implements PackageItem {
         this.price = price;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
     @Override
     public long getNumber() {
         return number;
     }
 
     @Override
-    public boolean stockAvailable() {
-        return true;
+    public String getTitle() {
+        return title;
+    }
+
+    @Override
+    public int getPrice() {
+        return price;
+    }
+
+    @Override
+    public int getStock() {
+        return 99999;
     }
 }

@@ -1,6 +1,5 @@
 package net.class101.server1.domain;
 
-import com.flextrade.jfixture.JFixture;
 import net.class101.server1.RandomParameterResolver;
 import net.class101.server1.RandomParameterResolver.Random;
 import org.junit.jupiter.api.Test;
@@ -23,11 +22,6 @@ class ClassPackageItemTest {
     }
 
     @Test
-    public void stockAvailable_will_return_true_always(@Random ClassPackageItem sut) {
-        assertThat(sut.stockAvailable()).isTrue();
-    }
-
-    @Test
     public void getTitle_will_return_title_correctly(@Random String title) {
         ClassPackageItem sut = new ClassPackageItem(0, title, 0);
         assertThat(sut.getTitle()).isEqualTo(title);
@@ -37,6 +31,11 @@ class ClassPackageItemTest {
     public void getPrice_will_return_price_correctly(@Random Integer price) {
         ClassPackageItem sut = new ClassPackageItem(0, "", price);
         assertThat(sut.getPrice()).isEqualTo(price);
+    }
+
+    @Test
+    public void getStock_will_return_stock_correctly(@Random ClassPackageItem sut) {
+        assertThat(sut.getStock()).isEqualTo(99999);
     }
 
 }

@@ -23,6 +23,6 @@ public class InMemoryPackageItemRepository implements PackageItemRepository {
                 .findFirst()
                 .orElseThrow(ClassNotFoundException::new);
 
-        ((KitPackageItem) foundItem).setStock(((KitPackageItem) packageItem).getStock());
+        ((KitPackageItem) foundItem).setStock(packageItem.getStock());
     }
 }

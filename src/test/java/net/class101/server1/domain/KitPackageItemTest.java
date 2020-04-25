@@ -22,24 +22,6 @@ class KitPackageItemTest {
     }
 
     @Test
-    public void stockAvailable_will_return_true_if_stock_is_more_than_zero() {
-        KitPackageItem sut = new KitPackageItem(0, "", 0, 1);
-        assertThat(sut.stockAvailable()).isTrue();
-    }
-
-    @Test
-    public void stockAvailable_will_return_false_if_stock_is_equal_zero() {
-        KitPackageItem sut = new KitPackageItem(0, "", 0, 0);
-        assertThat(sut.stockAvailable()).isFalse();
-    }
-
-    @Test
-    public void stockAvailable_will_return_false_if_stock_is_less_than_zero() {
-        KitPackageItem sut = new KitPackageItem(0, "", 0, -1);
-        assertThat(sut.stockAvailable()).isFalse();
-    }
-
-    @Test
     public void getTitle_will_return_title_correctly(@Random String title) {
         KitPackageItem sut = new KitPackageItem(0, title, 0, 0);
         assertThat(sut.getTitle()).isEqualTo(title);
@@ -49,5 +31,18 @@ class KitPackageItemTest {
     public void getPrice_will_return_price_correctly(@Random Integer price) {
         KitPackageItem sut = new KitPackageItem(0, "", price, 0);
         assertThat(sut.getPrice()).isEqualTo(price);
+    }
+
+    @Test
+    public void getStock_will_return_price_correctly(@Random Integer stock) {
+        KitPackageItem sut = new KitPackageItem(0, "", 0, stock);
+        assertThat(sut.getStock()).isEqualTo(stock);
+    }
+
+    @Test
+    public void setStock_will_change_stock_correctly(@Random Integer stock) {
+        KitPackageItem sut = new KitPackageItem(0, "", 0, 0);
+        sut.setStock(stock);
+        assertThat(sut.getStock()).isEqualTo(stock);
     }
 }

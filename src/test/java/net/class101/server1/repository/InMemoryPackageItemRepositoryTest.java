@@ -33,13 +33,13 @@ class InMemoryPackageItemRepositoryTest {
         KitPackageItem given = new KitPackageItem(91008, "작고 쉽게 그려요 - 부담없이 시작하는 수채화 미니 키트", 28000, 3);
         sut.updateStock(given);
 
-        KitPackageItem kitPackageItem = (KitPackageItem) Storage.packageItems
+        PackageItem packageItem = Storage.packageItems
                 .stream()
                 .filter(it -> it.getNumber() == 91008)
                 .collect(Collectors.toList())
                 .get(0);
 
-        assertThat(kitPackageItem.getStock()).isEqualTo(3);
+        assertThat(packageItem.getStock()).isEqualTo(3);
     }
 
     @Test

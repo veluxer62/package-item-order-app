@@ -13,18 +13,6 @@ public class KitPackageItem implements PackageItem {
         this.stock = stock;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public int getStock() {
-        return stock;
-    }
-
     public void setStock(int stock) {
         this.stock = stock;
     }
@@ -35,7 +23,17 @@ public class KitPackageItem implements PackageItem {
     }
 
     @Override
-    public boolean stockAvailable() {
-        return stock > 0;
+    public String getTitle() {
+        return title;
+    }
+
+    @Override
+    public int getPrice() {
+        return price;
+    }
+
+    @Override
+    public int getStock() {
+        return stock;
     }
 }
