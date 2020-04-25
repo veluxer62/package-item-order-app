@@ -3,13 +3,14 @@ package net.class101.server1.repository;
 import net.class101.server1.Storage;
 import net.class101.server1.domain.PackageItem;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class InMemoryPackageItemRepository implements PackageItemRepository {
     @Override
     public List<PackageItem> findAll() {
-        return Storage.packageItems;
+        return new ArrayList<>(Storage.packageItems);
     }
 
     @Override
