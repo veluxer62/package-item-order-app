@@ -38,4 +38,10 @@ class ClassPackageItemTest {
         assertThat(sut.getStock()).isEqualTo(99999);
     }
 
+    @Test
+    public void setStock_will_do_noting(@Random ClassPackageItem sut) {
+        sut.setStock(5);
+        assertThat(sut.getStock()).isEqualTo(99999);
+    }
+
 }

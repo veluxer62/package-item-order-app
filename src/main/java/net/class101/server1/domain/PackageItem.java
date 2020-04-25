@@ -5,4 +5,5 @@ public interface PackageItem {
     String getTitle();
     int getPrice();
     int getStock();
+    void setStock(int stock);
 }

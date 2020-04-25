@@ -31,4 +31,9 @@ public class ClassPackageItem implements PackageItem {
     public int getStock() {
         return 99999;
     }
+
+    @Override
+    public void setStock(int stock) {
+
+    }
 }

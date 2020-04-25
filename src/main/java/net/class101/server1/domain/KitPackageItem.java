@@ -13,10 +13,6 @@ public class KitPackageItem implements PackageItem {
         this.stock = stock;
     }
 
-    public void setStock(int stock) {
-        this.stock = stock;
-    }
-
     @Override
     public long getNumber() {
         return number;
@@ -35,5 +31,10 @@ public class KitPackageItem implements PackageItem {
     @Override
     public int getStock() {
         return stock;
+    }
+
+    @Override
+    public void setStock(int stock) {
+        this.stock = stock;
     }
 }
