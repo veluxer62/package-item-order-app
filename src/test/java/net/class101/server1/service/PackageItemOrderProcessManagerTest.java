@@ -13,6 +13,7 @@ import org.mockito.Mockito;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -21,7 +22,7 @@ class PackageItemOrderProcessManagerTest {
     private final PackageItemRepository packageItemRepository = Mockito.mock(PackageItemRepository.class);
     private final OrderRepository orderRepository = Mockito.mock(OrderRepository.class);
 
-    private final OrderProcessManager<List<OrderDto>> sut = new PackageItemOrderProcessManager(packageItemRepository, orderRepository);
+    private final OrderProcessManager<List<OrderDto>, List<UUID>> sut = new PackageItemOrderProcessManager(packageItemRepository, orderRepository);
 
     @Test
     public void sut_is_implemented_OrderProcessManager() {
@@ -36,7 +37,9 @@ class PackageItemOrderProcessManagerTest {
         Mockito.when(packageItemRepository.findByIdIn(Collections.singletonList(16374L)))
                 .thenReturn(Collections.singletonList(packageItem));
 
-        sut.order(message);
+        List<UUID> orderIds = sut.order(message);
+
+        assertThat(orderIds.size()).isEqualTo(1);
 
         List<PackageItem> expectedPackageItems = Collections.singletonList(packageItem);
         Mockito.verify(packageItemRepository).updateAll(expectedPackageItems);

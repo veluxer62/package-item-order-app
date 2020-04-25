@@ -8,9 +8,10 @@ import net.class101.server1.repository.OrderRepository;
 import net.class101.server1.repository.PackageItemRepository;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
-public class PackageItemOrderProcessManager implements OrderProcessManager<List<OrderDto>> {
+public class PackageItemOrderProcessManager implements OrderProcessManager<List<OrderDto>, List<UUID>> {
     private final PackageItemRepository packageItemRepository;
     private final OrderRepository orderRepository;
 
@@ -20,7 +21,7 @@ public class PackageItemOrderProcessManager implements OrderProcessManager<List<
     }
 
     @Override
-    public void order(List<OrderDto> message) {
+    public List<UUID> order(List<OrderDto> message) {
         List<Long> packageItemNumbers = message.stream()
                 .map(OrderDto::getPackageItemNumber)
                 .collect(Collectors.toList());
@@ -50,5 +51,9 @@ public class PackageItemOrderProcessManager implements OrderProcessManager<List<
         packageItemRepository.updateAll(packageItems);
 
         orderRepository.saveAll(orders);
+
+        return orders.stream()
+                .map(Order::getId)
+                .collect(Collectors.toList());
     }
 }
