@@ -1,6 +1,6 @@
 package net.class101.server1.controller;
 
-import net.class101.server1.SoldOutException;
+import net.class101.server1.exception.SoldOutException;
 import net.class101.server1.StorageRecoveryHelper;
 import net.class101.server1.dto.OrderDto;
 import net.class101.server1.dto.PackageItemsDto;

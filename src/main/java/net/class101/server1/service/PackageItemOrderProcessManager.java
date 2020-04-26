@@ -1,7 +1,6 @@
 package net.class101.server1.service;
 
-import net.class101.server1.IllegalOrderException;
-import net.class101.server1.IllegalPaymentException;
+import net.class101.server1.exception.IllegalOrderException;
 import net.class101.server1.domain.ClassPackageItem;
 import net.class101.server1.domain.Order;
 import net.class101.server1.domain.PackageItem;
@@ -12,7 +11,6 @@ import net.class101.server1.repository.PackageItemRepository;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 

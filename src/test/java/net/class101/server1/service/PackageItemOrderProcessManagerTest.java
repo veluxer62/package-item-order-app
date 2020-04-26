@@ -2,6 +2,8 @@ package net.class101.server1.service;
 
 import net.class101.server1.*;
 import net.class101.server1.dto.OrderDto;
+import net.class101.server1.exception.IllegalOrderException;
+import net.class101.server1.exception.SoldOutException;
 import net.class101.server1.repository.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;

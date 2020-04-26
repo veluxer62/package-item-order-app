@@ -1,7 +1,7 @@
 package net.class101.server1.domain;
 
-import net.class101.server1.IllegalOrderException;
-import net.class101.server1.SoldOutException;
+import net.class101.server1.exception.IllegalOrderException;
+import net.class101.server1.exception.SoldOutException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
