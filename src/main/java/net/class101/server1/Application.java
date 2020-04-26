@@ -18,7 +18,7 @@ import java.util.UUID;
 public class Application {
     public static void main(String[] args) {
 
-        ConsoleCommandProcessor processor = initialize();
+        ConsoleCommandHandler processor = initialize();
 
         while (processor.isRunning()) {
 
@@ -40,7 +40,7 @@ public class Application {
 
     }
 
-    private static ConsoleCommandProcessor initialize() {
+    private static ConsoleCommandHandler initialize() {
         final PackageItemRepository packageItemRepository = new InMemoryPackageItemRepository();
         final OrderRepository orderRepository = new InMemoryOrderRepository();
         final PackageItemProvider provider = new SimplePackageItemProvider(packageItemRepository);
@@ -53,6 +53,6 @@ public class Application {
 
         Scanner scanner = new Scanner(System.in);
 
-        return new ConsoleCommandProcessor(scanner, controller, viewResolver);
+        return new ConsoleCommandHandler(scanner, controller, viewResolver);
     }
 }
