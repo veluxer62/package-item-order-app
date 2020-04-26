@@ -2,8 +2,10 @@ package net.class101.server1.repository;
 
 import net.class101.server1.PackageItemEntity;
 import net.class101.server1.Storage;
+import net.class101.server1.StorageRecoveryHelper;
 import net.class101.server1.domain.KitPackageItem;
 import net.class101.server1.domain.PackageItem;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -15,6 +17,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 class InMemoryPackageItemRepositoryTest {
 
     private final PackageItemRepository sut = new InMemoryPackageItemRepository();
+
+    @AfterEach
+    public void afterEach() {
+        StorageRecoveryHelper.recovery();
+    }
 
     @Test
     public void sut_is_implemented_PackageItemRepository() {
