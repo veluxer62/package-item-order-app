@@ -1,7 +1,7 @@
 package net.class101.server1;
 
-import net.class101.server1.domain.ClassPackageItem;
-import net.class101.server1.domain.KitPackageItem;
+import net.class101.server1.repository.PackageItemEntity;
+import net.class101.server1.repository.Storage;
 
 import java.util.Arrays;
 

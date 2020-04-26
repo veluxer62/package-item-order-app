@@ -1,6 +1,6 @@
 package net.class101.server1.service;
 
-import net.class101.server1.Storage;
+import net.class101.server1.repository.Storage;
 import net.class101.server1.domain.PackageItem;
 import net.class101.server1.repository.InMemoryPackageItemRepository;
 import net.class101.server1.repository.PackageItemRepository;

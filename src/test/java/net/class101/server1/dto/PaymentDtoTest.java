@@ -1,6 +1,5 @@
 package net.class101.server1.dto;
 
-import net.class101.server1.PackageItemEntity;
 import net.class101.server1.domain.*;
 import org.junit.jupiter.api.Test;
 

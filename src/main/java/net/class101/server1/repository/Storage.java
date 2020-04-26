@@ -1,4 +1,4 @@
-package net.class101.server1;
+package net.class101.server1.repository;
 
 import net.class101.server1.domain.Order;
 

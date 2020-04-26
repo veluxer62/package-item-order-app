@@ -4,6 +4,7 @@ import net.class101.server1.RandomParameterResolver.Random;
 import net.class101.server1.domain.ClassPackageItem;
 import net.class101.server1.domain.KitPackageItem;
 import net.class101.server1.domain.PackageItem;
+import net.class101.server1.repository.PackageItemEntity;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 

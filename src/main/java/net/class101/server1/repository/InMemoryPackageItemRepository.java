@@ -1,7 +1,5 @@
 package net.class101.server1.repository;
 
-import net.class101.server1.PackageItemEntity;
-import net.class101.server1.Storage;
 import net.class101.server1.domain.PackageItem;
 
 import java.util.List;
