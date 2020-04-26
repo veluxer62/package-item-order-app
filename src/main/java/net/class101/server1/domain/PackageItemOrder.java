@@ -1,6 +1,6 @@
 package net.class101.server1.domain;
 
-import net.class101.server1.IllegalOrderCountException;
+import net.class101.server1.IllegalOrderException;
 import net.class101.server1.SoldOutException;
 
 import java.util.UUID;
@@ -16,7 +16,7 @@ public class PackageItemOrder implements Order {
         }
 
         if (orderCount <= 0) {
-            throw new IllegalOrderCountException();
+            throw new IllegalOrderException();
         }
 
         this.id = UUID.randomUUID();
