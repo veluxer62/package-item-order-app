@@ -40,10 +40,12 @@ public class PackageItemOrderProcessManager implements OrderProcessManager<List<
                             .findFirst()
                             .orElseThrow(IllegalArgumentException::new);
 
+                    PackageItemOrder packageItemOrder = new PackageItemOrder(packageItem, dto.getOrderCount());
+
                     int changeStock = packageItem.getStock() - dto.getOrderCount();
                     packageItem.setStock(changeStock);
 
-                    return new PackageItemOrder(packageItem, dto.getOrderCount());
+                    return packageItemOrder;
                 })
                 .collect(Collectors.toList());
 
