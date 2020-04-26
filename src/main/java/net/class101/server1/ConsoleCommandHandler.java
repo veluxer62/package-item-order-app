@@ -9,10 +9,6 @@ import net.class101.server1.resolver.ViewResolver;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
 
 public class ConsoleCommandHandler {
     private final Scanner scanner;
@@ -46,6 +42,8 @@ public class ConsoleCommandHandler {
 
         if (init.equals("o")) {
             mode = Mode.SELECT;
+            Response response = controller.getPackageItems();
+            viewResolver.show(response);
         } else {
             running = false;
         }
