@@ -35,7 +35,7 @@ public class ConsoleCommandHandler {
     }
 
     public void welcome() {
-        System.out.print("입력(o[order]: 주문, q[quit]: 종료 : ");
+        System.out.print("입력(o[order]: 주문, q[quit]: 종료) : ");
         String init = scanner.nextLine();
         controller.getPackageItems();
         System.out.println();
@@ -44,8 +44,12 @@ public class ConsoleCommandHandler {
             mode = Mode.SELECT;
             Response response = controller.getPackageItems();
             viewResolver.show(response);
-        } else {
+            System.out.println();
+        } else if (init.equals("q")) {
             running = false;
+        } else {
+            System.out.println("o 또는 q 만 입력해 주세요.");
+            System.out.println();
         }
     }
 
