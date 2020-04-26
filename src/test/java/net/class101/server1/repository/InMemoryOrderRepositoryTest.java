@@ -1,6 +1,7 @@
 package net.class101.server1.repository;
 
 import net.class101.server1.Storage;
+import net.class101.server1.StorageRecoveryHelper;
 import net.class101.server1.domain.Order;
 import net.class101.server1.domain.PackageItemOrder;
 import org.junit.jupiter.api.AfterEach;
@@ -19,15 +20,15 @@ class InMemoryOrderRepositoryTest {
 
     @BeforeEach
     public void beforeEach() {
-        Storage.orders.add(new PackageItemOrder(Storage.packageItems.get(0), 1));
-        Storage.orders.add(new PackageItemOrder(Storage.packageItems.get(1), 1));
-        Storage.orders.add(new PackageItemOrder(Storage.packageItems.get(2), 1));
-        Storage.orders.add(new PackageItemOrder(Storage.packageItems.get(3), 1));
+        Storage.orders.add(new PackageItemOrder(Storage.packageItems.get(0).toPackageItem(), 1));
+        Storage.orders.add(new PackageItemOrder(Storage.packageItems.get(1).toPackageItem(), 1));
+        Storage.orders.add(new PackageItemOrder(Storage.packageItems.get(2).toPackageItem(), 1));
+        Storage.orders.add(new PackageItemOrder(Storage.packageItems.get(3).toPackageItem(), 1));
     }
 
     @AfterEach
     public void afterEach() {
-        Storage.orders.clear();
+        StorageRecoveryHelper.recovery();
     }
 
     @Test
@@ -49,8 +50,8 @@ class InMemoryOrderRepositoryTest {
     public void save_will_insert_order_correctly() {
         Storage.orders.clear();
         List<Order> orders = Arrays.asList(
-                new PackageItemOrder(Storage.packageItems.get(0), 1),
-                new PackageItemOrder(Storage.packageItems.get(1), 1)
+                new PackageItemOrder(Storage.packageItems.get(0).toPackageItem(), 1),
+                new PackageItemOrder(Storage.packageItems.get(1).toPackageItem(), 1)
         );
 
         sut.saveAll(orders);

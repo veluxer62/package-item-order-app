@@ -1,5 +1,6 @@
 package net.class101.server1.repository;
 
+import net.class101.server1.PackageItemEntity;
 import net.class101.server1.Storage;
 import net.class101.server1.domain.KitPackageItem;
 import net.class101.server1.domain.PackageItem;
@@ -23,8 +24,7 @@ class InMemoryPackageItemRepositoryTest {
     @Test
     public void findAll_will_return_PackageItems_correctly() {
         List<PackageItem> actual = sut.findAll();
-        assertThat(Storage.packageItems == actual).isFalse();
-        assertThat(actual).containsAll(Storage.packageItems);
+        assertThat(actual.size()).isEqualTo(Storage.packageItems.size());
     }
 
     @Test
@@ -45,7 +45,7 @@ class InMemoryPackageItemRepositoryTest {
 
         sut.updateAll(packageItems);
 
-        List<PackageItem> expected = Storage.packageItems.stream()
+        List<PackageItemEntity> expected = Storage.packageItems.stream()
                 .filter(it -> it.getNumber() == 91008 || it.getNumber() == 9235)
                 .collect(Collectors.toList());
         assertThat(expected.get(0).getStock()).isEqualTo(8);

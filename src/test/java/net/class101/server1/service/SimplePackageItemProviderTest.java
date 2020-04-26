@@ -23,7 +23,7 @@ class SimplePackageItemProviderTest {
     @Test
     public void getPackageItems_will_return_PackageItem_correctly() {
         List<PackageItem> actual = sut.getPackageItems();
-        assertThat(actual).containsAll(Storage.packageItems);
+        assertThat(actual.size()).isEqualTo(Storage.packageItems.size());
     }
 
 }
