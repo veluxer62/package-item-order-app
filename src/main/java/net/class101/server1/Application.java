@@ -14,29 +14,39 @@ import net.class101.server1.service.*;
 import java.util.List;
 import java.util.Scanner;
 import java.util.UUID;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class Application {
     public static void main(String[] args) {
 
         ConsoleCommandHandler processor = initialize();
+        ExecutorService service = Executors.newCachedThreadPool();
 
-        while (processor.isRunning()) {
+        service.execute(() -> {
+            while (processor.isRunning()) {
 
-            switch (processor.getMode()) {
-                case WELCOME:
-                    processor.welcome();
-                    break;
+                switch (processor.getMode()) {
+                    case WELCOME:
+                        processor.welcome();
+                        break;
 
-                case SELECT:
-                    processor.select();
-                    break;
+                    case SELECT:
+                        processor.select();
+                        break;
 
-                case ORDER:
-                    processor.order();
-                    break;
+                    case ORDER:
+                        processor.order();
+                        break;
+                }
+
+                if (!processor.isRunning()) {
+                    service.shutdown();
+                }
             }
+        });
 
-        }
+
 
     }
 

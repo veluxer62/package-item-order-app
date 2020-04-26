@@ -30,8 +30,6 @@ public class ConsoleCommandHandler {
     private Mode mode = Mode.WELCOME;
     private boolean running = true;
 
-    ExecutorService service = Executors.newCachedThreadPool();
-
     public Mode getMode() {
         return mode;
     }
@@ -50,7 +48,6 @@ public class ConsoleCommandHandler {
             mode = Mode.SELECT;
         } else {
             running = false;
-            service.shutdown();
         }
     }
 
@@ -64,23 +61,25 @@ public class ConsoleCommandHandler {
             System.out.print("수량 : ");
             String orderCount = scanner.nextLine();
 
-            orders.add(new OrderDto(Long.parseLong(packageNumber), Integer.parseInt(orderCount)));
+            try {
+                long packageItemNumber = Long.parseLong(packageNumber);
+                int count = Integer.parseInt(orderCount);
+                orders.add(new OrderDto(packageItemNumber, count));
+            } catch (NumberFormatException e) {
+                viewResolver.show(e);
+            }
         }
     }
 
     public void order() {
-        Future<?> fut = service.submit(() -> {
+        try {
             Response orderResult = controller.order(orders);
             viewResolver.show(orderResult);
+        } catch (Exception e) {
+            viewResolver.show(e);
+        } finally {
             orders.clear();
-        });
-
-        try {
-            fut.get();
             mode = Mode.WELCOME;
-        } catch (InterruptedException | ExecutionException e) {
-            e.printStackTrace();
         }
-
     }
 }

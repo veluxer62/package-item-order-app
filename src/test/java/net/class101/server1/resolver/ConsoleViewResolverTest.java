@@ -41,4 +41,12 @@ class ConsoleViewResolverTest {
         assertThat(outputStream.toString()).isEqualTo(expected);
     }
 
+    @ParameterizedTest
+    @ArgumentsSource(ThrowableAndPrintStringArguments.class)
+    public void show_will_return_print_correctly_if_given_Throwable(
+            Throwable throwable, String expected) {
+        sut.show(throwable);
+        assertThat(outputStream.toString()).isEqualTo(expected);
+    }
+
 }

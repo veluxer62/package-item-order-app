@@ -6,6 +6,7 @@ import net.class101.server1.domain.Order;
 import net.class101.server1.domain.PackageItem;
 import net.class101.server1.domain.PackageItemOrder;
 import net.class101.server1.dto.OrderDto;
+import net.class101.server1.exception.ResourceNotFountException;
 import net.class101.server1.repository.OrderRepository;
 import net.class101.server1.repository.PackageItemRepository;
 
@@ -36,7 +37,7 @@ public class PackageItemOrderProcessManager implements OrderProcessManager<List<
                     PackageItem packageItem = packageItems.stream()
                             .filter(it -> it.getNumber() == dto.getPackageItemNumber())
                             .findFirst()
-                            .orElseThrow(IllegalArgumentException::new);
+                            .orElseThrow(ResourceNotFountException::new);
 
                     PackageItemOrder packageItemOrder = new PackageItemOrder(packageItem, dto.getOrderCount());
 
@@ -54,7 +55,7 @@ public class PackageItemOrderProcessManager implements OrderProcessManager<List<
                 .count();
 
         if (count > 0) {
-            throw new IllegalOrderException();
+            throw new IllegalOrderException("클래스 행사는 하나만 주문 가능 합니다.");
         }
 
         orderRepository.saveAll(orders);

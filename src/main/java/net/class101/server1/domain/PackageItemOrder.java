@@ -16,7 +16,7 @@ public class PackageItemOrder implements Order {
         }
 
         if (orderCount <= 0) {
-            throw new IllegalOrderException();
+            throw new IllegalOrderException("주문 수량은 1개 이상 이어야 합니다.");
         }
 
         this.id = UUID.randomUUID();
