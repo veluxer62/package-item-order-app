@@ -1,7 +1,5 @@
 package net.class101.server1.domain;
 
-import java.util.Objects;
-
 public class ClassPackageItem implements PackageItem {
 
     private final long number;
@@ -37,20 +35,5 @@ public class ClassPackageItem implements PackageItem {
     @Override
     public void setStock(int stock) {
 
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        ClassPackageItem that = (ClassPackageItem) o;
-        return number == that.number &&
-                price == that.price &&
-                title.equals(that.title);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(number, title, price);
     }
 }
