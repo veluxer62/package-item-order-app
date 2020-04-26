@@ -6,10 +6,7 @@ import net.class101.server1.dto.OrderDto;
 import net.class101.server1.dto.PackageItemsDto;
 import net.class101.server1.dto.PaymentDto;
 import net.class101.server1.dto.Response;
-import net.class101.server1.repository.InMemoryOrderRepository;
-import net.class101.server1.repository.InMemoryPackageItemRepository;
-import net.class101.server1.repository.OrderRepository;
-import net.class101.server1.repository.PackageItemRepository;
+import net.class101.server1.repository.*;
 import net.class101.server1.service.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
@@ -49,20 +46,47 @@ class SimplePackageItemControllerTest {
     }
 
     @Test
-    public void order_will_return_Response_correctly() {
-        List<OrderDto> message = Arrays.asList(
-                new OrderDto(16374, 1),
-                new OrderDto(91008, 3),
-                new OrderDto(91008, 2)
-        );
+    public void order_will_return_Response_correctly_if_call_multi_thread() throws InterruptedException {
+        int numberOfThreads = 5;
+        ExecutorService service = Executors.newFixedThreadPool(5);
+        CountDownLatch latch = new CountDownLatch(numberOfThreads);
 
-        Response actual = sut.order(message);
+        List<Future<?>> futureList = new ArrayList<>();
 
-        assertThat(actual).isInstanceOf(PaymentDto.class);
+        for (int i = 0; i < numberOfThreads; i++) {
+            Future<?> submit = service.submit(() -> {
+                try {
+                    List<OrderDto> message = Arrays.asList(
+                            new OrderDto(16374, 1),
+                            new OrderDto(91008, 1)
+                    );
+                    sut.order(message);
+                } finally {
+                    latch.countDown();
+                }
+            });
+
+            futureList.add(submit);
+        }
+        latch.await(10, TimeUnit.SECONDS);
+
+        long count = futureList.stream()
+                .map(it -> {
+                    try {
+                        return it.get();
+                    } catch (InterruptedException | ExecutionException e) {
+                        return e.getCause();
+                    }
+                })
+                .filter(it -> !(it instanceof Throwable))
+                .count();
+
+        assertThat(count).isEqualTo(5);
+        assertThat(Storage.orders.size()).isEqualTo(10);
     }
 
     @Test
-    public void testCounterWithConcurrency() throws InterruptedException {
+    public void order_will_throw_SoldOutException_correctly_if_call_multi_thread() throws InterruptedException {
         int numberOfThreads = 5;
         ExecutorService service = Executors.newFixedThreadPool(5);
         CountDownLatch latch = new CountDownLatch(numberOfThreads);
